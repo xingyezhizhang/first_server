@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="cn">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <style>
+        body{
+            height: 100vh;
+            background: linear-gradient(white,skyblue);
+        }
+        .center{
+            /* 居中 */
+            position:relative;
+            top: 25%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+        }
+        #login{
+            box-sizing: border-box;
+            width: 480px;
+            padding: 48px;
+            padding-bottom: 24px;
+            padding-top: 24px;
+            border-radius: 8px;
+            background-color: skyblue;
+        }
+        .title{
+            font-size: 2em;
+            transform: translate(-50%,-25%);
+        }
+        .form-group{
+            margin-top: 12px;
+        }
+    </style>
+</head>
+<body>
+    <div class="center" id="login">
+        <form action="/login" method="POST">
+            <div class="form-group">
+              <label class="badge badge-secondary center title">Login</label>
+              <input type="text" name="user"class="form-control"  aria-describedby="emailHelp">
+              <small  class="form-text text-muted">Please input your username.</small>
+            </div>
+            <div class="form-group">
+              <input type="password" name="pwd"class="form-control" id="exampleInputPassword1">
+            </div>
+            <div class="form-group form-check">
+            </div>
+            <button type="submit" class="btn btn-primary center">Submit</button>
+          </form>
+    </div>
+</body>
+</html>

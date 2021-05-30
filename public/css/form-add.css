@@ -1,0 +1,49 @@
+#form-add {
+    padding: 10px;
+    border-style: none;
+    border-radius: 5px;
+    margin: 10% auto;
+    position: relative;
+    text-align: center;
+}
+
+#form-add h1 {
+    color: #191919;
+    text-transform: uppercase;
+    font-weight: 900;
+}
+
+#form-add input[type="text"] {
+    border: 0;
+    background: none;
+    display: block;
+    margin: 10px auto;
+    text-align: center;
+    border: 2px solid #3498db;
+    padding: 14px 10px;
+    width: 40%;
+    outline: none;
+    color: #333;
+    border-radius: 24px;
+    transition: 0.25s;
+}
+
+#form-add input[type="submit"] {
+    border: 0;
+    background: none;
+    display: block;
+    margin: 20px auto;
+    text-align: center;
+    border: 2px solid #2ecc71;
+    padding: 14px 40px;
+    outline: none;
+    color: #333;
+    border-radius: 24px;
+    transition: 0.25s;
+    cursor: pointer;
+}
+
+#form-add input[type="text"]:focus {
+    width: 60%;
+    border-color: #2ecc71;
+}

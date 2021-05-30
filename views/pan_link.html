@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="cn">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Link</title>
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/form-add.css">
+    <style>
+        .show {
+            width: 80%;
+            margin-left: 10%;
+        }
+
+        nav.navbar>div.container-fluid {
+            justify-content: flex-end;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="show">
+        <nav class="navbar navbar-light bg-light">
+            <div class="container-fluid">
+                <form class="d-flex">
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success" type="submit">Search</button>
+                </form>
+            </div>
+        </nav>
+        <ul class="nav nav-pills nav-fill">
+            <li class="nav-item">
+                <a class="nav-link active" href="#">Show Link</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Add</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">AddInfo</a>
+            </li>
+        </ul>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">标题</th>
+                    <th scope="col">描述</th>
+                    <th scope="col">有效</th>
+                    <th scope="col">操作</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{each data}}
+                <tr>
+                    <th scope="row">{{$value.id}}</th>
+                    <td><a href="https://{{$value.domain_name}}{{$value.herf_link}}">{{$value.link_name}}</a></td>
+                    <td>{{$value.description}}</td>
+                    <td>{{$value.valid}}</td>
+                    <td>
+                        <a href="https://{{$value.domain_name}}{{$value.herf_link}}">访问</a>
+                        <a href="#">修改</a>
+                        <a href="#">删除</a>
+                    </td>
+                </tr>
+                <tr>
+                    {{/each}}
+            </tbody>
+        </table>
+        <div id="form-add" style="display: none;">
+            <h1>添加新链接</h1>
+            <form>
+                <input type="text" id="LinkName" placeholder="LinkName">
+                <input type="text" id="Pan" placeholder="Pan">
+                <input type="text" id="PassWord" placeholder="PassWord">
+                <input type="submit" id="submit" value="添加">
+            </form>
+        </div>
+    </div>
+    <script>
+        function navInit() {
+            // 通过 CSS 选择器 获取导航条标签列
+            let lis = document.querySelectorAll('.show ul li');
+            for (let i = lis.length - 1; i >= 0; i--) {
+                lis[i].addEventListener('click', function () {
+                    let nav_chirds = this.parentNode.querySelectorAll('.nav-link');
+                    let table = document.getElementsByTagName('table')[0];
+                    let form_add = document.getElementById('form-add');
+                    // switch是 切换页面的临时解决方案，不具备移植性和扩展性
+                    switch (this.children[0].text) {
+                        case 'Show Link':
+                            location.reload();
+                            form_add.style.display = 'none';
+                            table.removeAttribute('style');
+                            break;
+                        case 'Add':
+                            table.style.display = 'none';
+                            form_add.removeAttribute('style');
+                            break;
+                        case 'Del':
+                            form_add.style.display = 'none';
+                            table.style.display = 'none';
+                            break;
+                    }
+                    listDelCName(nav_chirds, 'active');
+                    addClassName(this.children[0]);
+                });
+            }
+        }
+
+        function addClassName(label, ClassName = 'active') {
+            label.classList.add(ClassName);
+            return label;
+        }
+
+        function listDelCName(nodeList, ClassName) {
+            for (let i = nodeList.length - 1; i >= 0; i--) {
+                nodeList[i].classList.remove(ClassName);
+            }
+        }
+
+        function addLink() {
+            let LinkName = document.getElementById('LinkName');
+            let Pass = document.getElementById('PassWord');
+            let Pan = document.getElementById('Pan');
+            let linkContent = {
+                name: LinkName.value.trim(),
+                link: Pan.value.trim(),
+                pass: Pass.value.trim()
+            };
+            let content = JSON.stringify(linkContent);
+            // console.log(content);
+            let xhr = new XMLHttpRequest();
+            // 请求方法 + 路由(告诉服务器，用什么来处理这个请求)
+            xhr.open('post', '/addLink');
+            xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+            xhr.send(content);
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == 4) {
+                    console.log(xhr.response);
+                }
+            }
+            LinkName.value = '';
+            Pan.value = '';
+            Pass.value = '';
+        }
+
+        navInit();
+        submit.onclick = addLink;
+    </script>
+</body>
+
+</html>

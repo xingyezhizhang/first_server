@@ -1,0 +1,33 @@
+{
+  "name": "first_server",
+  "version": "1.0.0",
+  "description": "网盘链接管理服务器，第一次尝试",
+  "main": "server.js",
+  "scripts": {
+    "test": "Pan_link"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/xingyezhizhang/first_server.git"
+  },
+  "keywords": [
+    "网盘链接管理"
+  ],
+  "author": "星夜之章",
+  "license": "SEE LICENSE IN <LICENSE>",
+  "bugs": {
+    "url": "https://github.com/xingyezhizhang/first_server/issues"
+  },
+  "homepage": "https://github.com/xingyezhizhang/first_server#readme",
+  "dependencies": {
+    "@popperjs/core": "^2.9.2",
+    "art-template": "^4.13.2",
+    "bootstrap": "^5.0.1",
+    "cookie-session": "^1.4.0",
+    "express": "^4.17.1",
+    "express-art-template": "^1.0.1",
+    "jquery": "^3.6.0",
+    "log4js": "^6.3.0",
+    "mysql": "^2.18.1"
+  }
+}
